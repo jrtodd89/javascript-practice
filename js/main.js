@@ -1,80 +1,62 @@
-// ------------ DAILY CHALLENGE ------------
-// Prompt the user for two different numbers
-// Convert the values to integers
-// Store the two integers as variables
-// Compare the two numbers
-// Alert the larger number
+//Create a new codepen
+//Write a function that accepts a number as an argument
+//Alert the user whether the given number is even or odd
+//Call your function
 
-// ------------ TAKE HOME CHALLENGE ------------
-// Add an edge case to your daily challenge code
-// Check if the user input anything other than a number
-// If so, prompt the user again to input a number
-
-
-// ATTEMPT ONE
-// let numberOne = prompt(`Choose a number.`);
-// numberOne = parseInt(numberOne);
-// let numberTwo = prompt(`Choose a second number.`);
-// numberTwo = parseInt(numberTwo);
-
-// if (numberOne == numberTwo) {
-// 	alert(`Numbers are indentical.`);
-// } else {
-// 	const largerNumber = Math.max(numberOne, numberTwo);
-// 	alert(`${largerNumber} is the largest number.`);
-// }
-
-// ATTEMPT TWO
-// function getNumber() {
-// 	let numberOne = prompt(`Choose a number.`);
-// 	numberOne = parseInt(numberOne);
-// 	let numberTwo = prompt(`Choose a second number.`);
-// 	numberTwo = parseInt(numberTwo);
-// 	if (isNaN(numberOne) || isNaN(numberTwo)) {
-// 		getNumber();
-// 	} else {
-// 		if (numberOne === numberTwo) {
-// 			alert(`Numbers are indentical.`);
-// 		} else {
-// 			const largerNumber = Math.max(numberOne, numberTwo);
-// 			alert(`${largerNumber} is the larger number.`);
-// 		}
+// function numberAlert(input) {
+// 	if (input % 2 == 0) {
+// 		alert(`Your number is even!`)
+// 	} else if (input % 2 != 0) {
+// 		alert(`Your number is odd!`)
 // 	}
 // }
-// getNumber();
+// numberAlert(49859820);
 
-// ATTEMPT THREE
+// Write a function that accepts a password (string)
+// Validate the password using the following rules:
+// Must be 6-20 characters long
+// Must start with a letter
+// Alert the user if their password has been accepted or why their password was rejected
 
-// Prompt the user for two different numbers
-// Convert the values to integers
-// Store the two integers as variables
-// Compare the two numbers
-// Alert the larger number
-
-// ------------ TAKE HOME CHALLENGE ------------
-// Add an edge case to your daily challenge code
-// Check if the user input anything other than a number
-// If so, prompt the user again to input a number
-
-let numberOne = '';
-let numberTwo = '';
-
-function getNumber() {
-	if (isNaN(numberOne) || typeof(numberOne) != 'number') {
-		numberOne = prompt(`Choose your first number.`);
-		numberOne = parseInt(numberOne);
-		getNumber();
-	} else if (isNaN(numberTwo) || typeof(numberTwo) != 'number') {
-		numberTwo = prompt(`Choose a second number.`);
-		numberTwo = parseInt(numberTwo);
-		getNumber();
-	} else {
-		if (numberOne === numberTwo) {
-			alert(`Numbers are indentical.`);
-		} else {
-			const largerNumber = Math.max(numberOne, numberTwo);
-			alert(`${largerNumber} is the larger number.`);
-		}
+function password(input) {
+	if (input.length < 6) {
+		alert(`Password is too short!`)
+	} else if (input.length > 20) {
+		alert(`Password is too long!`)
+	} else if (input[0] ){
+		console.log(input.length);
 	}
 }
-getNumber();
+
+password('deKmN30ofe6OdeKmN30ofe6O');
+
+
+
+function createElement(type) {
+	document.createElement(type);
+}
+
+function placeElement(element, parent) {
+	parent.appendChild(element);
+}
+
+function updateElement(element, html) {
+	element.innerHTML = html;
+}
+
+function updateElementStyle(element, styleName, styleValue) {
+	element.style[styleName] = styleValue;
+}
+
+function updateElementClass(element, className) {
+	element.classList.add(className);
+}
+
+function removeElementClass(element, className) {
+	element.classList.remove(className);
+}
+
+function removeElement(element){
+	element.remove();
+}
+
