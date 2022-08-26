@@ -1,65 +1,31 @@
-//Create a new codepen
-//Write a function that accepts a number as an argument
-//Alert the user whether the given number is even or odd
-//Call your function
+let randomPokemon = Math.floor(Math.random()*916);
+fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}`).then(function(data){
+	return data.json()
+}).then(function(data){
+	let name = document.createElement('h2');
+	document.body.append(name);
+	name.innerHTML = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+	return data.sprites
+}).then(function(data){
+	return data.front_default
+}).then(function(data){
+ 	console.log(data);
+	 let img = document.createElement('img');
+	 document.body.append(img);
+	 img.src = data;
+	 img.style.width = '200px';
+	})
+	
+	
+	let url = fetch('https://api.thecatapi.com/v1/images/search');
+	
+	url.then(function(data) {
+		return data.json();
+	}).then(function(data) {
+		console.log(data[0]);
+		let img = document.createElement('img');
+		document.body.append(img);
+		img.src = data[0].url;
+		img.style.width = '500px';
 
-function numberAlert(input) {
-	if (input % 2 == 0) {
-		alert(`Your number is even!`)
-	} else if (input % 2 != 0) {
-		alert(`Your number is odd!`)
-	}
-}
-// numberAlert(42);
-
-// Write a function that accepts a password (string)
-// Validate the password using the following rules:
-// Must be 6-20 characters long
-// Must start with a letter
-// Alert the user if their password has been accepted or why their password was rejected
-
-function password(input) {
-	let regExp = /[a-z]/i;
-	if (input.length < 6) {
-		alert(`Password is too short!`)
-	} else if (input.length > 20) {
-		alert(`Password is too long!`)
-	} else if (regExp.test(input.charAt(0))) {
-		alert(`Password has been accepted.`)
-	} else {
-		alert(`Password does not begin with a letter.`)
-	}
-}
-
-password('deKmN00ofe6O');
-
-
-
-// function createElement(type) {
-// 	document.createElement(type);
-// }
-
-// function placeElement(element, parent) {
-// 	parent.appendChild(element);
-// }
-
-// function updateElement(element, html) {
-// 	element.innerHTML = html;
-// }
-
-// function updateElementStyle(element, styleName, styleValue) {
-// 	element.style[styleName] = styleValue;
-// }
-
-// function updateElementClass(element, className) {
-// 	element.classList.add(className);
-// }
-
-// function removeElementClass(element, className) {
-// 	element.classList.remove(className);
-// }
-
-// function removeElement(element){
-// 	element.remove();
-// }
-
+});
