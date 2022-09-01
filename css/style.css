@@ -5,4 +5,20 @@ body {
 	margin: 0 auto;
 	width: 100%;
 	max-width: 960px;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.pokemonContainer {
+	padding: 20px;
+	max-width: 150px;
+	width: 100%;
+	text-align: center;
+	margin: 10px;
+}
+
+.pokemonContainer img {
+	margin: 0 auto;
+	display: block;
 }
