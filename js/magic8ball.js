@@ -1,65 +1,70 @@
-function random(range) {
-	const random = Math.floor(Math.random() * range)
-	return random;
+let answerContainer = document.createElement('div');
+function ask() {
+	const answers = [
+		"It is certain",
+		"Reply hazy, try again",
+		"Don't count on it",
+		"It is decidedly so",
+		"Ask again later",
+		"My reply is no",
+		"Without a doubt",
+		"Better not tell you now",
+		"My sources say no",
+		"Yes definitely",
+		"Cannot predict now",
+		"Outlook not so good",
+		"You may rely on it",
+		"Concentrate and ask again",
+		"Very doubtful",
+		"As I see it, yes",
+		"Most likely",
+		"Outlook good",
+		"Yes",
+		"Signs point to yes"
+	]
+	const random = Math.floor(Math.random() * answers.length);
+	answerContainer.setAttribute('id', 'answers')
+	answerContainer.innerHTML = answers[random];
+	document.getElementsByClassName('innerBall')[0].append(answerContainer);
+	document.getElementsByClassName('innerTriangle')[0].classList.toggle('hide');
+	document.getElementsByClassName('innerNumber')[0].classList.toggle('hide');
+	submit.classList.toggle('hide');
+	localStorage.setItem(`question`, input.value)
 }
 
-const answers = [
-	"It is certain",
-	"Reply hazy, try again",
-	"Don't count on it",
-	"It is decidedly so",
-	"Ask again later",
-	"My reply is no",
-	"Without a doubt",
-	"Better not tell you now",
-	"My sources say no",
-	"Yes definitely",
-	"Cannot predict now",
-	"Outlook not so good",
-	"You may rely on it",
-	"Concentrate and ask again",
-	"Very doubtful",
-	"As I see it, yes",
-	"Most likely",
-	"Outlook good",
-	"Yes",
-	"Signs point to yes"
-]
-
-const answersContainer = document.createElement('div');
-answersContainer.setAttribute('id', 'answers')
-answersContainer.classList.add('hide');
-answersContainer.innerHTML = answers[random(answers.length)];
-document.body.prepend(answersContainer);
-
-const form = document.createElement('form');
-form.classList.add('askForm');
-form.setAttribute('name', 'questionForm');
-document.body.append(form);
-
-const label = document.createElement('label');
-label.innerHTML = `Ask me anything!`;
-label.setAttribute('for', 'question');
-document.getElementsByClassName('askForm')[0].append(label);
 
 const input = document.createElement('input');
-input.type = 'text';
-input.setAttribute('name', 'question')
-input.classList.add('question');
-document.getElementsByClassName('askForm')[0].append(input);
+document.body.append(input);
 
 const submit = document.createElement('button');
-submit.type = 'submit';
-submit.innerHTML = `Ask`;
-submit.addEventListener('click', function (event) {
-	event.preventDefault();
-	var inputValue = document.getElementsByClassName('question')[0].value;
-	answersContainer.classList.toggle('hide');
-	label.classList.toggle('hide');
-	input.classList.toggle('hide');
-	submit.classList.toggle('hide');
-	let questionContainer = document.createElement('span');
-	questionContainer.innerHTML = inputValue;
-	document.body.append(questionContainer);
+submit.innerHTML = `Ask me anything!`;
+document.body.append(submit);
+submit.addEventListener('click', function() {
+	ask();
+	const question = document.createElement('p');
+	question.classList.add('question');
+	question.innerHTML = localStorage.getItem('question');
+	document.querySelector('.questionContainer').append(question);
+	document.querySelector('.innerBall').classList.add('innerBallGrey');
+	input.classList.add('hide');
 });
-document.getElementsByClassName('askForm')[0].append(submit);
+
+
+const reset = document.createElement('button');
+reset.innerHTML = `Reset`;
+document.body.append(reset);
+reset.addEventListener('click', function() {
+	if (document.querySelector('#answers')) {
+		document.querySelector('#answers').remove();
+	}
+	if (document.querySelector('.question')) {
+		document.querySelector('.question').remove();
+	}
+	localStorage.clear();
+	document.getElementsByClassName('innerTriangle')[0].classList.add('hide');
+	document.getElementsByClassName('innerNumber')[0].classList.remove('hide');
+	document.querySelector('.innerBall').classList.remove('innerBallGrey');
+	input.classList.remove('hide');
+	input.value = '';
+	submit.classList.remove('hide');
+})
